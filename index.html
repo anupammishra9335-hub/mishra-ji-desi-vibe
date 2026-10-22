@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mishra ji Desi vibe</title>
-<meta name="description" content="Mishra ji Desi vibe - purane Bhojpuri geet, lokgeet and desi nostalgia, one tap away.">
+<meta name="description" content="Mishra ji Desi vibe - purane Bhojpuri geet, lokgeet and desi nostalgia, playing right here.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎶</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +38,27 @@ h2{font-family:'Rozha One',serif;font-size:1.9rem;color:var(--accent);margin-bot
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
 .chip{background:var(--chip);color:var(--ink);border:1px solid var(--line);padding:8px 16px;border-radius:999px;cursor:pointer;font:inherit;font-weight:500}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.player{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:22px}
+.frame{aspect-ratio:16/9;background:#000;position:relative}
+.frame iframe,.frame #yt{position:absolute;inset:0;width:100%;height:100%;border:0}
+.np{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.np .meta{min-width:0;flex:1 1 220px}
+.np .meta .lbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
+.np .meta .tt{font-weight:600;font-size:1.1rem;line-height:1.3}
+.np .meta .ar{color:var(--muted);font-size:.9rem}
+.ctl{display:flex;gap:8px;align-items:center}
+.ctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--chip);color:var(--ink);font-size:1.1rem;cursor:pointer;font-family:inherit}
+.ctl button.main{background:var(--accent);color:#fff;border-color:var(--accent);width:52px;height:52px}
+.ctl button.on{outline:2px solid var(--accent)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;transition:transform .15s}
 .card:hover{transform:translateY(-3px)}
+.card.playing{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 40%,transparent)}
 .card .tag{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
 .card h3{font-size:1.15rem;line-height:1.3}
 .card p{color:var(--muted);font-size:.95rem;flex:1}
-.card a{color:var(--accent);font-weight:600;text-decoration:none}
-.card a:hover{text-decoration:underline}
+.card button.play{align-self:flex-start;background:var(--accent);color:#fff;border:0;border-radius:999px;padding:8px 18px;font:inherit;font-weight:600;cursor:pointer}
+.card button.play:hover{filter:brightness(1.08)}
 .moods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .mood{background:linear-gradient(135deg,var(--chip),var(--card));border:1px solid var(--line);border-radius:16px;padding:20px}
 .mood .e{font-size:2rem}
@@ -53,7 +66,7 @@ h2{font-family:'Rozha One',serif;font-size:1.9rem;color:var(--accent);margin-bot
 .mood p{color:var(--muted);font-size:.92rem}
 .about{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;text-align:center}
 footer{text-align:center;padding:34px 20px 50px;color:var(--muted);border-top:2px dashed var(--line);font-size:.92rem}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:999px;transition:transform .25s;font-size:.95rem}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:999px;transition:transform .25s;font-size:.95rem;z-index:10;max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .empty{color:var(--muted);padding:20px 0}
 </style>
@@ -64,8 +77,8 @@ footer{text-align:center;padding:34px 20px 50px;color:var(--muted);border-top:2p
   <div class="bunting">🪔 🎶 🌼 🎶 🪔</div>
   <h1>Mishra ji <span>Desi vibe</span></h1>
   <div class="hi">मिश्रा जी के साथ, देसी धुन</div>
-  <p class="sub">Purane Bhojpuri geet, lokgeet and the songs your nani still hums. Pick a mood, tap a song, and let the gaon come to you.</p>
-  <a class="btn" href="#songs">Start the playlist</a>
+  <p class="sub">Purane Bhojpuri geet, lokgeet and the songs your nani still hums. Pick a mood, hit play, and let the gaon come to you.</p>
+  <button class="btn" id="start">▶ Start the playlist</button>
   <button class="btn ghost" id="shuffle">Surprise me 🎲</button>
 </header>
 
@@ -84,8 +97,26 @@ footer{text-align:center;padding:34px 20px 50px;color:var(--muted);border-top:2p
 
 <section id="songs">
   <h2>The Playlist</h2>
-  <p class="lead">Tap any song to open it on YouTube. New tracks join the list as the vibe grows.</p>
+  <p class="lead">Press play on any song and it plays right here. It rolls on to the next one by itself.</p>
   <div class="chips" id="chips"></div>
+
+  <div class="player" id="player">
+    <div class="frame"><div id="yt"></div></div>
+    <div class="np">
+      <div class="meta">
+        <div class="lbl" id="npLbl">Ready when you are</div>
+        <div class="tt" id="npTitle">Choose a song below</div>
+        <div class="ar" id="npArtist"></div>
+      </div>
+      <div class="ctl">
+        <button id="prev" aria-label="Previous song">⏮</button>
+        <button id="pp" class="main" aria-label="Play or pause">▶</button>
+        <button id="next" aria-label="Next song">⏭</button>
+        <button id="shufBtn" aria-label="Shuffle" title="Shuffle">🔀</button>
+      </div>
+    </div>
+  </div>
+
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty" hidden>No songs in this mood yet. Check back soon!</p>
 </section>
@@ -102,66 +133,133 @@ footer{text-align:center;padding:34px 20px 50px;color:var(--muted);border-top:2p
 
 <footer>
   Made with 💛 · Mishra ji Desi vibe<br>
-  Songs open on YouTube. All music belongs to its respective artists and owners.
+  Songs play through YouTube's player. All music belongs to its respective artists and owners.
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const songs = [
-  {t:"Kashi Hile Patna Hile", m:"Gaon Ki Yaad", d:"A Bhojpuri film-era classic with a swing you can feel in your feet."},
-  {t:"Ganga Maiya Tohe Piyari Chadhaibo", m:"Ganga Ghat", d:"The song that started it all for Bhojpuri cinema, a devotional promise to Ganga maiya."},
-  {t:"Nadiya Ke Paar", m:"Ganga Ghat", d:"River-crossing nostalgia from the film-era golden days."},
-  {t:"Ganga Ke Teere Teere", m:"Ganga Ghat", d:"A riverside tune for slow evenings and long memories."},
-  {t:"Purana Bhojpuri Lokgeet", m:"Gaon Ki Yaad", d:"Traditional folk songs passed down at weddings and gatherings."},
-  {t:"Bhojpuri Fagua Holi Geet", m:"Holi Dhamaal", d:"Fagua, the festive songs of Holi season. Bring your gulal."},
-  {t:"Bhojpuri Chhath Geet", m:"Bhakti & Parv", d:"The devotional songs of Chhath, sung at dawn by the water."},
-  {t:"Bhojpuri Sohar and Vivah Geet", m:"Gaon Ki Yaad", d:"Songs of birth and wedding celebrations from the heartland."},
-  {t:"Bhojpuri Kajri Songs", m:"Gaon Ki Yaad", d:"Monsoon folk songs, longing and rain in every line."},
-  {t:"Bhojpuri Devi Geet", m:"Bhakti & Parv", d:"Devotional songs for Navratri and the Mata ke jagrata."}
+var songs = [
+  {id:"luPScxluS74", t:"Kashi Hile Patna Hile", a:"Manna Dey · Dangal (1977)", m:"Gaon Ki Yaad", d:"A Bhojpuri film-era classic with a swing you can feel in your feet."},
+  {id:"APeG-tGMsNA", t:"Hey Ganga Maiya Tohe Piyari Chadhaibo", a:"Lata & Usha Mangeshkar · 1962", m:"Ganga Ghat", d:"From the very first Bhojpuri film, a devotional promise to Ganga maiya."},
+  {id:"M2gnZV1vASs", t:"Sonwa Ke Pinjra Mein", a:"Mohammed Rafi · 1962", m:"Ganga Ghat", d:"Rafi's voice from the golden-era Bhojpuri classic."},
+  {id:"JBQca5DEQeQ", t:"Kaun Disha Mein Leke Chala Re Batohiya", a:"Jaspal Singh & Hemlata · Nadiya Ke Paar", m:"Ganga Ghat", d:"A river-crossing traveller's song with a gaon-ki-mitti feel."},
+  {id:"qUeuWi81PmM", t:"Kelwa Ke Paat Par", a:"Sharda Sinha", m:"Bhakti & Parv", d:"A Chhath favourite sung at the ghat, by the voice of the festival."},
+  {id:"9Ijd_PGkg8c", t:"Pahile Pahil Chhathi Maiya", a:"Sharda Sinha", m:"Bhakti & Parv", d:"A devotional Chhath geet for the sun and Chhathi Maiya."},
+  {id:"7UIKq16XCc8", t:"Nimiye Ke Dhadi Maiya", a:"Devi geet", m:"Bhakti & Parv", d:"A traditional devotional song for Navratri and mata ke jagrata."},
+  {id:"tQRCHSR9qlM", t:"Bhojpuri Holi Traditional Geet", a:"Sharda Sinha · full jukebox", m:"Holi Dhamaal", d:"An hour of traditional Holi geet. Bring your gulal."},
+  {id:"eylv8riakPo", t:"Bairen Koyliya", a:"Sharda Sinha · Kajri", m:"Gaon Ki Yaad", d:"A Kajri, the monsoon folk songs of longing and rain."},
+  {id:"nCL-kj1NL_I", t:"Koyal Bin Bagiya Na Sobhe", a:"Sharda Sinha", m:"Gaon Ki Yaad", d:"A much-loved Bhojpuri folk song, soft and nostalgic."},
+  {id:"OyQ0hohPtYw", t:"Sir Ke Sundoor Re Gavanva", a:"Sharda Sinha · Vivah geet", m:"Gaon Ki Yaad", d:"A traditional wedding song of the Bhojpuri heartland."}
 ];
-const moods = ["All", ...Array.from(new Set(songs.map(s => s.m)))];
-let active = "All";
-const chips = document.getElementById("chips");
-const grid = document.getElementById("grid");
-const empty = document.getElementById("empty");
-const toast = document.getElementById("toast");
 
-function link(title){ return "https://www.youtube.com/results?search_query=" + encodeURIComponent(title); }
-function esc(s){ return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+var moods = ["All"];
+songs.forEach(function(s){ if (moods.indexOf(s.m) < 0) moods.push(s.m); });
+var active = "All", cur = -1, ready = false, pending = null, player = null, playing = false, shuffleOn = false, errStreak = 0;
+
+var chips = document.getElementById("chips");
+var grid = document.getElementById("grid");
+var empty = document.getElementById("empty");
+var toast = document.getElementById("toast");
+var ppBtn = document.getElementById("pp");
+
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function say(msg){ toast.textContent = msg; toast.classList.add("show"); setTimeout(function(){ toast.classList.remove("show"); }, 2600); }
+function queue(){ var q = []; songs.forEach(function(s,i){ if (active === "All" || s.m === active) q.push(i); }); return q; }
 
 function renderChips(){
   chips.innerHTML = "";
-  moods.forEach(m => {
-    const b = document.createElement("button");
+  moods.forEach(function(m){
+    var b = document.createElement("button");
     b.className = "chip" + (m === active ? " on" : "");
     b.textContent = m;
-    b.onclick = () => { active = m; renderChips(); renderSongs(); };
+    b.onclick = function(){ active = m; renderChips(); renderSongs(); };
     chips.appendChild(b);
   });
 }
 function renderSongs(){
-  const list = songs.filter(s => active === "All" || s.m === active);
-  grid.innerHTML = list.map(s =>
-    '<div class="card"><span class="tag">' + esc(s.m) + '</span><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p><a href="' + link(s.t) + '" target="_blank" rel="noopener">▶ Play on YouTube</a></div>'
-  ).join("");
-  empty.hidden = list.length > 0;
+  var q = queue();
+  grid.innerHTML = q.map(function(i){
+    var s = songs[i];
+    return '<div class="card' + (i === cur ? ' playing' : '') + '" data-i="' + i + '"><span class="tag">' + esc(s.m) + '</span><h3>' + esc(s.t) + '</h3><p>' + esc(s.a) + ' — ' + esc(s.d) + '</p><button class="play" data-i="' + i + '">' + (i === cur && playing ? '❚❚ Playing' : '▶ Play') + '</button></div>';
+  }).join("");
+  empty.hidden = q.length > 0;
 }
-function say(msg){ toast.textContent = msg; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2200); }
+function updateNowPlaying(){
+  var s = cur >= 0 ? songs[cur] : null;
+  document.getElementById("npLbl").textContent = s ? (playing ? "Now playing" : "Paused") : "Ready when you are";
+  document.getElementById("npTitle").textContent = s ? s.t : "Choose a song below";
+  document.getElementById("npArtist").textContent = s ? s.a : "";
+  ppBtn.textContent = playing ? "❚❚" : "▶";
+  document.getElementById("shufBtn").classList.toggle("on", shuffleOn);
+  renderSongs();
+}
 
-document.getElementById("shuffle").onclick = () => {
-  const s = songs[Math.floor(Math.random() * songs.length)];
-  say("Now playing: " + s.t);
-  window.open(link(s.t), "_blank", "noopener");
+function playSong(i, scroll){
+  cur = i; errStreak = errStreak;
+  playing = true;
+  if (ready && player) { player.loadVideoById(songs[i].id); } else { pending = i; }
+  updateNowPlaying();
+  if (scroll) document.getElementById("player").scrollIntoView({behavior:"smooth", block:"center"});
+}
+function step(dir){
+  var q = queue();
+  if (!q.length) return;
+  var pos = q.indexOf(cur), n;
+  if (shuffleOn && q.length > 1) {
+    do { n = q[Math.floor(Math.random() * q.length)]; } while (n === cur);
+  } else if (pos < 0) { n = q[0]; }
+  else { n = q[(pos + dir + q.length) % q.length]; }
+  playSong(n, false);
+}
+
+window.onYouTubeIframeAPIReady = function(){
+  player = new YT.Player("yt", {
+    width: "100%", height: "100%",
+    playerVars: { rel: 0, playsinline: 1, modestbranding: 1 },
+    events: {
+      onReady: function(){ ready = true; if (pending !== null) { player.loadVideoById(songs[pending].id); pending = null; } },
+      onStateChange: function(e){
+        if (e.data === 1) { playing = true; errStreak = 0; updateNowPlaying(); }
+        else if (e.data === 2) { playing = false; updateNowPlaying(); }
+        else if (e.data === 0) { step(1); }
+      },
+      onError: function(){
+        errStreak++;
+        if (errStreak > 3) { playing = false; updateNowPlaying(); say("Couldn't play these right now. Try again in a bit."); return; }
+        say("That one won't play here, skipping to the next.");
+        step(1);
+      }
+    }
+  });
 };
-document.getElementById("share").onclick = async () => {
-  const data = { title: "Mishra ji Desi vibe", text: "Purane Bhojpuri geet, ek tap door. Come ride the vibe!", url: location.href };
-  try {
-    if (navigator.share) { await navigator.share(data); }
-    else { await navigator.clipboard.writeText(data.url); say("Link copied. Send it along!"); }
-  } catch (e) {}
+var tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
+
+grid.addEventListener("click", function(e){
+  var b = e.target.closest("button.play");
+  if (!b) return;
+  var i = parseInt(b.getAttribute("data-i"), 10);
+  if (i === cur && ready && player) { if (playing) player.pauseVideo(); else player.playVideo(); }
+  else { playSong(i, true); }
+});
+ppBtn.onclick = function(){
+  if (cur < 0) { var q = queue(); if (q.length) playSong(q[0], false); return; }
+  if (ready && player) { if (playing) player.pauseVideo(); else player.playVideo(); }
 };
-renderChips(); renderSongs();
+document.getElementById("next").onclick = function(){ step(1); };
+document.getElementById("prev").onclick = function(){ step(-1); };
+document.getElementById("shufBtn").onclick = function(){ shuffleOn = !shuffleOn; updateNowPlaying(); say(shuffleOn ? "Shuffle on" : "Shuffle off"); };
+document.getElementById("start").onclick = function(){ var q = queue(); if (q.length) playSong(q[0], true); };
+document.getElementById("shuffle").onclick = function(){ var q = queue(); if (!q.length) return; playSong(q[Math.floor(Math.random() * q.length)], true); };
+document.getElementById("share").onclick = function(){
+  var data = { title: "Mishra ji Desi vibe", text: "Purane Bhojpuri geet, ek tap door. Come ride the vibe!", url: location.href };
+  if (navigator.share) { navigator.share(data).catch(function(){}); }
+  else if (navigator.clipboard) { navigator.clipboard.writeText(data.url).then(function(){ say("Link copied. Send it along!"); }); }
+};
+
+renderChips(); updateNowPlaying();
 </script>
 </body>
 </html>
