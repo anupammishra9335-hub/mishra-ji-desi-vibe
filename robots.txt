@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anupammishra9335-hub.github.io/mishrajivibes/sitemap.xml
