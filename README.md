@@ -21,3 +21,16 @@ Serve this repository root with a static server, or use GitHub Pages from the ma
 Add only recordings whose licence permits this use. Add title, artist, audio URL, source and licence credits to the code and visible credits. Do not paste YouTube links into the audio source or remove required attribution. The starter tracks share one artist/licence; extend the data structure and credit renderer for other artists/licences.
 
 The audio edition replaces the previous YouTube catalogue. Earlier versions remain in Git history.
+
+## Mood worlds
+
+Choose a mood to change the full colour theme, original SVG character, headline and filtered music catalogue:
+
+- All moods: Milo the Radio; original cream/lavender world, all three tracks.
+- Happy: Sunny the Sun; warm sunshine colours and hopping animation; Carefree.
+- Chill: Coco the Cloud; cool aqua colours and gentle drifting; Easy Lemon.
+- Reflective: Luna the Moon; lavender starlight colours and slow swaying; Dhaka.
+
+Mood choice is stored locally with defensive fallback. Switching mood clears search and the favourites-only filter, but preserves currently playing audio and its captured queue. Press Start listening or a track's Play button to begin the selected collection. Search and favourites apply within the selected mood. Each mood currently contains one licensed track; new mood categories require new permitted tracks and their credits.
+
+Mood controls, descriptions and character names support English/Hindi. Playback animations stop when paused or buffering and are disabled for reduced-motion preferences. Decorative characters are hidden from assistive technology; the selected theme is announced as text.
