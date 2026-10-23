@@ -141,6 +141,13 @@ body[data-look="neon"] .queue h3{color:var(--n1)}
 @media (max-width:560px){#scene .ball{width:92px;height:92px;margin-left:-46px}#scene .vinyl{width:190px;height:190px}#scene .eqw{gap:3px}}
 @media (prefers-reduced-motion:reduce){#scene *,#scene *::before,#scene *::after{animation:none!important}}
 body[data-look="vibrant"] .row,body[data-look="vibrant"] .mood,body[data-look="vibrant"] .about,body[data-look="vibrant"] .bar,body[data-look="vibrant"] .queue{color:var(--ink)}
+/* ---------- retro songs ---------- */
+body[data-mood="retro"]{--m1:#8a4b12;--m2:#f4c95d;--gV:linear-gradient(160deg,#4a2c12 0%,#9c5a1e 52%,#e0a526 100%);--n1:#ffcf6b;--n2:#ff9a52;--hf:'Rozha One',serif}
+#scene .vinyl.gold{background:radial-gradient(circle,#111 0 4%,#e0a526 5% 17%,#111 18% 100%),repeating-radial-gradient(circle,rgba(255,255,255,.1) 0 2px,transparent 2px 7px),#111}
+@keyframes filmmove{to{background-position:0 34px}}
+#scene .film{top:0;bottom:0;width:34px;background:#1b120a;opacity:.55}
+#scene .film::before{content:"";position:absolute;inset:0;margin:0 9px;border-radius:2px;background:repeating-linear-gradient(180deg,transparent 0 10px,#f1d9a0 10px 22px,transparent 22px 34px);animation:filmmove 6s linear infinite}
+@media (max-width:560px){#scene .film{width:22px}#scene .film::before{margin:0 5px}}
 /* headings use a mood font */
 .hero h1,h2,.who{font-family:var(--hf,'Rozha One',serif)}
 body,header.hero,.row,.chip,.mood,.stage,.about,.bar,.search{transition:background-color .45s,border-color .45s,color .3s,box-shadow .3s}
@@ -376,8 +383,8 @@ kbd{background:var(--chip);border:1px solid var(--line);border-radius:5px;paddin
 
 <script>
 var T = {
-  en:{sub:"Bhojpuri, Haryanvi, Punjabi, Marathi and English pop hits, plus old and new party favourites. Pick a mood, hit play, and turn the volume up.",start:"▶ Start the playlist",surprise:"Surprise me 🎲",pickMood:"Pick your mood",moodLead:"Every desi moment has its own soundtrack.",playlist:"The Playlist",plLead:"Press play on any song and it plays right here. It rolls on to the next one by itself.",search:"Search songs…",none:"No songs match. Try another mood or search.",aboutH:"About the vibe",aboutP:"Mishra ji Desi vibe is a small corner of the internet for people who still know every word of the old songs. No login, no noise. Just good desi music, one tap away.",share:"Share with someone who knows the words 💛",foot1:"Made with 💛 · Mishra ji Desi vibe",foot2:"Songs play through YouTube's player. All music belongs to its respective artists and owners.",queueH:"Up next",keysHint:"Tip: Space to play/pause, N for next, P for previous, Q for the queue.",songs:" songs",all:"All",nowPlay:"Now playing",linkCopied:"Link copied. Send it along!",shufOn:"Shuffle on",shufOff:"Shuffle off",skip:"That one won't play here, skipping to the next.",fail:"Couldn't play these right now. Try again in a bit.",moodNames:{bhoj:"Bhojpuri Dhamaal",har:"Haryanvi Swag",pun:"Punjabi Beats",party:"Party Time",mar:"Marathi Dhamaka",eng:"English & Pop"},moodDesc:{bhoj:"Bhojpuri dance and party hits, old and new. Volume up!",har:"Desi Haryanvi dance numbers, Sapna style. Thumka lagao!",pun:"Bhangra and Punjabi party bangers, from Mundian To Bach Ke to Born To Shine.",party:"Old and new dance-floor favourites, from Jumma Chumma to Jhoome Jo Pathaan.",mar:"Marathi hits, from Sairat and Natarang to lavani, Ganpati and Shivaji songs.",eng:"The biggest English and pop hits ever, from Shape of You to Bohemian Rhapsody."}},
-  hi:{sub:"भोजपुरी, हरियाणवी, पंजाबी, मराठी और इंग्लिश पॉप हिट्स, साथ में पुराने-नए पार्टी फेवरेट। मूड चुनिए, प्ले दबाइए और आवाज़ बढ़ा दीजिए।",start:"▶ प्लेलिस्ट शुरू करें",surprise:"कुछ भी सुनाओ 🎲",pickMood:"अपना मूड चुनिए",moodLead:"हर देसी पल का अपना संगीत होता है।",playlist:"प्लेलिस्ट",plLead:"किसी भी गाने पर प्ले दबाइए, वो यहीं बजेगा। एक खत्म होते ही अगला अपने आप चलेगा।",search:"गाने खोजें…",none:"कोई गाना नहीं मिला। दूसरा मूड या शब्द आज़माइए।",aboutH:"इस धुन के बारे में",aboutP:"मिश्रा जी देसी वाइब इंटरनेट का एक छोटा सा कोना है उन लोगों के लिए जिन्हें पुराने गानों का हर बोल याद है। न लॉगिन, न शोर। बस अच्छा देसी संगीत, एक टैप दूर।",share:"किसी ऐसे को भेजिए जिसे बोल याद हों 💛",foot1:"💛 के साथ बनाया · मिश्रा जी देसी वाइब",foot2:"गाने YouTube के प्लेयर से बजते हैं। सारा संगीत अपने-अपने कलाकारों और मालिकों का है।",queueH:"आगे बजेगा",keysHint:"टिप: Space से प्ले/पॉज़, N अगला, P पिछला, Q कतार।",songs:" गाने",all:"सब",nowPlay:"अभी बज रहा है",linkCopied:"लिंक कॉपी हो गया। भेज दीजिए!",shufOn:"शफ़ल चालू",shufOff:"शफ़ल बंद",skip:"यह गाना यहाँ नहीं बज सका, अगले पर जा रहे हैं।",fail:"अभी गाने नहीं बज पा रहे। थोड़ी देर में फिर कोशिश करें।",moodNames:{bhoj:"भोजपुरी धमाल",har:"हरियाणवी स्वैग",pun:"पंजाबी बीट्स",party:"पार्टी टाइम",mar:"मराठी धमाका",eng:"इंग्लिश और पॉप"},moodDesc:{bhoj:"भोजपुरी डांस और पार्टी हिट्स, पुराने और नए। आवाज़ बढ़ाइए!",har:"देसी हरियाणवी डांस नंबर, सपना स्टाइल। ठुमका लगाओ!",pun:"भांगड़ा और पंजाबी पार्टी बैंगर्स, मुंडियां तो बचके से बॉर्न टू शाइन तक।",party:"पुराने और नए डांस फ्लोर हिट्स, जुम्मा चुम्मा से झूमे जो पठान तक।",mar:"सैराट और नटरंग से लावणी, गणपति और शिवाजी गीतों तक, मराठी हिट्स।",eng:"शेप ऑफ यू से बोहेमियन रैप्सोडी तक, सबसे बड़े इंग्लिश और पॉप हिट्स।"}}
+  en:{sub:"Bhojpuri, Haryanvi, Punjabi, Marathi and English pop hits, plus old and new party favourites. Pick a mood, hit play, and turn the volume up.",start:"▶ Start the playlist",surprise:"Surprise me 🎲",pickMood:"Pick your mood",moodLead:"Every desi moment has its own soundtrack.",playlist:"The Playlist",plLead:"Press play on any song and it plays right here. It rolls on to the next one by itself.",search:"Search songs…",none:"No songs match. Try another mood or search.",aboutH:"About the vibe",aboutP:"Mishra ji Desi vibe is a small corner of the internet for people who still know every word of the old songs. No login, no noise. Just good desi music, one tap away.",share:"Share with someone who knows the words 💛",foot1:"Made with 💛 · Mishra ji Desi vibe",foot2:"Songs play through YouTube's player. All music belongs to its respective artists and owners.",queueH:"Up next",keysHint:"Tip: Space to play/pause, N for next, P for previous, Q for the queue.",songs:" songs",all:"All",nowPlay:"Now playing",linkCopied:"Link copied. Send it along!",shufOn:"Shuffle on",shufOff:"Shuffle off",skip:"That one won't play here, skipping to the next.",fail:"Couldn't play these right now. Try again in a bit.",moodNames:{bhoj:"Bhojpuri Dhamaal",har:"Haryanvi Swag",pun:"Punjabi Beats",party:"Party Time",mar:"Marathi Dhamaka",eng:"English & Pop",retro:"Retro Songs"},moodDesc:{bhoj:"Bhojpuri dance and party hits, old and new. Volume up!",har:"Desi Haryanvi dance numbers, Sapna style. Thumka lagao!",pun:"Bhangra and Punjabi party bangers, from Mundian To Bach Ke to Born To Shine.",party:"Old and new dance-floor favourites, from Jumma Chumma to Jhoome Jo Pathaan.",mar:"Marathi hits, from Sairat and Natarang to lavani, Ganpati and Shivaji songs.",eng:"The biggest English and pop hits ever, from Shape of You to Bohemian Rhapsody.",retro:"All-time favourites from the golden era: Kishore, Rafi, Lata, Mukesh and more."}},
+  hi:{sub:"भोजपुरी, हरियाणवी, पंजाबी, मराठी और इंग्लिश पॉप हिट्स, साथ में पुराने-नए पार्टी फेवरेट। मूड चुनिए, प्ले दबाइए और आवाज़ बढ़ा दीजिए।",start:"▶ प्लेलिस्ट शुरू करें",surprise:"कुछ भी सुनाओ 🎲",pickMood:"अपना मूड चुनिए",moodLead:"हर देसी पल का अपना संगीत होता है।",playlist:"प्लेलिस्ट",plLead:"किसी भी गाने पर प्ले दबाइए, वो यहीं बजेगा। एक खत्म होते ही अगला अपने आप चलेगा।",search:"गाने खोजें…",none:"कोई गाना नहीं मिला। दूसरा मूड या शब्द आज़माइए।",aboutH:"इस धुन के बारे में",aboutP:"मिश्रा जी देसी वाइब इंटरनेट का एक छोटा सा कोना है उन लोगों के लिए जिन्हें पुराने गानों का हर बोल याद है। न लॉगिन, न शोर। बस अच्छा देसी संगीत, एक टैप दूर।",share:"किसी ऐसे को भेजिए जिसे बोल याद हों 💛",foot1:"💛 के साथ बनाया · मिश्रा जी देसी वाइब",foot2:"गाने YouTube के प्लेयर से बजते हैं। सारा संगीत अपने-अपने कलाकारों और मालिकों का है।",queueH:"आगे बजेगा",keysHint:"टिप: Space से प्ले/पॉज़, N अगला, P पिछला, Q कतार।",songs:" गाने",all:"सब",nowPlay:"अभी बज रहा है",linkCopied:"लिंक कॉपी हो गया। भेज दीजिए!",shufOn:"शफ़ल चालू",shufOff:"शफ़ल बंद",skip:"यह गाना यहाँ नहीं बज सका, अगले पर जा रहे हैं।",fail:"अभी गाने नहीं बज पा रहे। थोड़ी देर में फिर कोशिश करें।",moodNames:{bhoj:"भोजपुरी धमाल",har:"हरियाणवी स्वैग",pun:"पंजाबी बीट्स",party:"पार्टी टाइम",mar:"मराठी धमाका",eng:"इंग्लिश और पॉप",retro:"रेट्रो सॉन्ग्स"},moodDesc:{bhoj:"भोजपुरी डांस और पार्टी हिट्स, पुराने और नए। आवाज़ बढ़ाइए!",har:"देसी हरियाणवी डांस नंबर, सपना स्टाइल। ठुमका लगाओ!",pun:"भांगड़ा और पंजाबी पार्टी बैंगर्स, मुंडियां तो बचके से बॉर्न टू शाइन तक।",party:"पुराने और नए डांस फ्लोर हिट्स, जुम्मा चुम्मा से झूमे जो पठान तक।",mar:"सैराट और नटरंग से लावणी, गणपति और शिवाजी गीतों तक, मराठी हिट्स।",eng:"शेप ऑफ यू से बोहेमियन रैप्सोडी तक, सबसे बड़े इंग्लिश और पॉप हिट्स।",retro:"सुनहरे दौर के सदाबहार गाने: किशोर, रफ़ी, लता, मुकेश और भी बहुत कुछ।"}}
 };
 
 var songs = [
@@ -802,7 +809,57 @@ var songs = [
   {id:"cp1hEnACA-g", t:"Ya Ravji Basa Bhavji", a:"Surekha Kudachi", m:"mar"},
   {id:"PORr5Flf694", t:"Mi Satarachi Gulchadi", a:"Resham Tipnis", m:"mar"},
   {id:"e_qMHLm_UeQ", t:"Gulabachi Kali", a:"Tu Hi Re", m:"mar"},
-  {id:"IbUcrzkMuQw", t:"Hil Pori Hila", a:"Gautami Patil · Bhau Kadam", m:"mar"}
+  {id:"IbUcrzkMuQw", t:"Hil Pori Hila", a:"Gautami Patil · Bhau Kadam", m:"mar"},
+  {id:"xkl1QwNEuYs", t:"Pyar Hua Ikrar Hua", a:"Manna Dey & Lata Mangeshkar", m:"retro"},
+  {id:"V-K6haaZJr8", t:"Chura Liya Hai Tumne", a:"Asha Bhosle & Mohammed Rafi", m:"retro"},
+  {id:"-W2dagktUp0", t:"Kabhi Kabhie Mere Dil Mein", a:"Mukesh", m:"retro"},
+  {id:"AMuRRXCuy-4", t:"Pal Pal Dil Ke Paas", a:"Kishore Kumar", m:"retro"},
+  {id:"fy7P_Uu3alA", t:"Mera Joota Hai Japani", a:"Mukesh", m:"retro"},
+  {id:"1T8G_d5o5Gs", t:"Yeh Dosti Hum Nahin Todenge", a:"Kishore Kumar & Manna Dey", m:"retro"},
+  {id:"sI7WLg21i80", t:"Jeena Yahan Marna Yahan", a:"Mukesh", m:"retro"},
+  {id:"gLKBwutnPwA", t:"Pukarta Chala Hoon Main", a:"Mohammed Rafi & Asha Bhosle", m:"retro"},
+  {id:"McP9D114BfU", t:"Baharon Phool Barsao", a:"Mohammed Rafi", m:"retro"},
+  {id:"63l_CnFV4Cw", t:"Gata Rahe Mera Dil", a:"Kishore Kumar & Lata Mangeshkar", m:"retro"},
+  {id:"2RL0XVbs3Us", t:"Dil Dhoondta Hai", a:"Bhupinder Singh & Lata Mangeshkar", m:"retro"},
+  {id:"ByAbV-MKDgs", t:"Mehbooba Mehbooba", a:"R. D. Burman · Sholay", m:"retro"},
+  {id:"9FjuBvzF1E4", t:"Kate Nahin Kat Te Din Ye Raat", a:"Kishore Kumar & Alka Yagnik", m:"retro"},
+  {id:"FF3cEPji3Jo", t:"Pardesiya", a:"Kishore Kumar & Lata Mangeshkar", m:"retro"},
+  {id:"eH_oARs8j9Q", t:"Khaike Paan Banaraswala", a:"Kishore Kumar · Don", m:"retro"},
+  {id:"7dO_MS9tZ5E", t:"Dekha Ek Khwab", a:"Kishore Kumar & Lata Mangeshkar", m:"retro"},
+  {id:"Jf92MOkrbEw", t:"Rang Barse", a:"Amitabh Bachchan", m:"retro"},
+  {id:"SBfPs-PMGTA", t:"Pehla Nasha", a:"Udit Narayan & Sadhana Sargam", m:"retro"},
+  {id:"cNV5hLSa9H8", t:"Tujhe Dekha To Ye Jaana Sanam", a:"Kumar Sanu & Lata Mangeshkar", m:"retro"},
+  {id:"9u-r5W4WVO4", t:"Tip Tip Barsa Paani", a:"Udit Narayan & Alka Yagnik", m:"retro"},
+  {id:"fyZ-sOHj-Vg", t:"Kya Hua Tera Wada", a:"Mohammed Rafi", m:"retro"},
+  {id:"46kMhdOoeHM", t:"Ae Mere Watan Ke Logon", a:"Lata Mangeshkar", m:"retro"},
+  {id:"UNjhqT_hlbg", t:"Chala Jata Hoon", a:"Kishore Kumar", m:"retro"},
+  {id:"D4c_j-R4Fts", t:"Jaane Kahan Gaye Woh Din", a:"Mukesh", m:"retro"},
+  {id:"BOLYNw3x1lE", t:"Chhookar Mere Man Ko", a:"Kishore Kumar", m:"retro"},
+  {id:"vcEEQ-i7Lcs", t:"Chalte Chalte", a:"Lata Mangeshkar & Mohammed Rafi", m:"retro"},
+  {id:"f5bEkgKTZmw", t:"Jawani Janeman", a:"Asha Bhosle", m:"retro"},
+  {id:"ln3meCI0LFM", t:"Jab Koi Baat Bigad Jaye", a:"Kumar Sanu & Sadhana Sargam", m:"retro"},
+  {id:"eVnG_Rqfgg4", t:"Neele Neele Ambar Par", a:"Kishore Kumar", m:"retro"},
+  {id:"LZ_YUOr-tYw", t:"Tujhse Naraaz Nahin Zindagi", a:"Anup Ghoshal · Lata Mangeshkar", m:"retro"},
+  {id:"cocLgiQ3FQw", t:"Dilbar Mere", a:"Kishore Kumar", m:"retro"},
+  {id:"br6C4U3Dyfo", t:"Lag Ja Gale", a:"Lata Mangeshkar", m:"retro"},
+  {id:"6yL7e60G17c", t:"Mere Sapno Ki Rani", a:"Kishore Kumar", m:"retro"},
+  {id:"zbvfAkJWntc", t:"Roop Tera Mastana", a:"Kishore Kumar", m:"retro"},
+  {id:"xP2OcqFcKSY", t:"Yeh Shaam Mastani", a:"Kishore Kumar", m:"retro"},
+  {id:"yULawzPhBEI", t:"Piya Tu Ab To Aaja", a:"Asha Bhosle", m:"retro"},
+  {id:"ozwH49d7nOA", t:"Ek Ladki Bheegi Bhaagi Si", a:"Kishore Kumar", m:"retro"},
+  {id:"vLpRfaRiDnk", t:"Zindagi Ka Safar", a:"Kishore Kumar", m:"retro"},
+  {id:"Q3Sy8rdD_3Y", t:"Awara Hoon", a:"Mukesh", m:"retro"},
+  {id:"Iz8E5cFYfZE", t:"Chaudhvin Ka Chand", a:"Mohammed Rafi", m:"retro"},
+  {id:"pMJl4XPdNi8", t:"Babuji Dheere Chalna", a:"Geeta Dutt", m:"retro"},
+  {id:"H2BTCPW3Hw8", t:"Ek Pyar Ka Nagma Hai", a:"Lata Mangeshkar & Mukesh", m:"retro"},
+  {id:"yE3tX7UMjGE", t:"Hum Tum Ek Kamre Mein Band Ho", a:"Shailendra Singh & Lata Mangeshkar", m:"retro"},
+  {id:"5-lRnMrz6Ok", t:"Yeh Jo Mohabbat Hai", a:"Kishore Kumar", m:"retro"},
+  {id:"b1fXZwi4Qzc", t:"Dhal Gaya Din", a:"Mohammed Rafi", m:"retro"},
+  {id:"vS_JXshiu68", t:"Ek Ajnabee Haseena Se", a:"Kishore Kumar", m:"retro"},
+  {id:"Of-V8ADNVdQ", t:"Mere Mehboob Tujhe", a:"Mohammed Rafi & Asha Bhosle", m:"retro"},
+  {id:"Je-at465MXA", t:"Raat Kali Ek Khwab Mein", a:"Kishore Kumar", m:"retro"},
+  {id:"IgKdXLfxgQQ", t:"Hawa Hawai", a:"Kavita Krishnamurthy · Mr. India", m:"retro"},
+  {id:"Eylt4Rbq-RA", t:"Aaj Phir Jeene Ki Tamanna Hai", a:"Lata Mangeshkar", m:"retro"}
 ];
 
 /* ===== Mood characters (original cartoon art, inline SVG) ===== */
@@ -930,6 +987,26 @@ CH.party = S(
   '<g class="tw"><path d="M18 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#ffd43b"/><path d="M176 30 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#22d3ee"/><path d="M168 150 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#ff4fa3"/></g>'
 );
 
+/* Retro Songs: Vinyl Dada, a grey-curled uncle in a mustard jacket holding up a record */
+CH.retro = S(
+  '<path d="M70 192 L97 192 L99 227 L58 227Z" fill="#7a3e12"/><path d="M103 192 L130 192 L142 227 L101 227Z" fill="#7a3e12"/><ellipse cx="78" cy="229" rx="21" ry="6" fill="#2b1608"/><ellipse cx="122" cy="229" rx="21" ry="6" fill="#2b1608"/>' +
+  TORSO('#d9a441') + '<path d="M82 124 L100 154 L92 122Z M118 124 L100 154 L108 122Z" fill="#fff4d6"/><circle cx="100" cy="170" r="3" fill="#7a3e12"/><circle cx="100" cy="186" r="3" fill="#7a3e12"/>' +
+  ARM('aL', 'M66 134 Q38 124 40 92', '#d9a441', 40, 86, '#e0b184') +
+  '<g class="aR"><path d="M134 134 Q164 130 160 104" fill="none" stroke="#d9a441" stroke-width="16" stroke-linecap="round"/><circle cx="160" cy="68" r="27" fill="#14101f"/><circle cx="160" cy="68" r="21" fill="none" stroke="#3a3550" stroke-width="1.6"/><circle cx="160" cy="68" r="15" fill="none" stroke="#3a3550" stroke-width="1.6"/><circle cx="160" cy="68" r="9" fill="#e8590c"/><circle cx="160" cy="68" r="2.4" fill="#fff4d6"/><path d="M142 52 Q150 44 160 43" stroke="#fff" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/><circle cx="160" cy="102" r="9" fill="#e0b184"/></g>' +
+  HEAD('#e0b184') +
+  '<path d="M56 74 Q48 38 76 34 Q100 22 124 34 Q152 38 144 74 Q138 52 100 50 Q62 52 56 74Z" fill="#d3cdc0"/><circle cx="66" cy="50" r="9" fill="#d3cdc0"/><circle cx="134" cy="50" r="9" fill="#d3cdc0"/><circle cx="82" cy="36" r="9" fill="#d3cdc0"/><circle cx="118" cy="36" r="9" fill="#d3cdc0"/><circle cx="100" cy="32" r="9" fill="#d3cdc0"/>' +
+  CHEEKS + EYES +
+  '<circle cx="85" cy="79" r="14.5" fill="none" stroke="#3b2410" stroke-width="3.6"/><circle cx="115" cy="79" r="14.5" fill="none" stroke="#3b2410" stroke-width="3.6"/><path d="M99.5 79 H100.5" stroke="#3b2410" stroke-width="3.6"/><path d="M70 76 L58 72 M130 76 L142 72" stroke="#3b2410" stroke-width="3" stroke-linecap="round"/>' +
+  '<path d="M88 108 Q100 120 112 108" stroke="#7a1f1f" stroke-width="3.6" fill="none" stroke-linecap="round"/>' +
+  '<path d="M68 98 Q82 88 100 98 Q118 88 132 98 Q124 108 100 102 Q76 108 68 98Z" fill="#8a8173"/><path d="M68 98 Q60 102 62 108" stroke="#8a8173" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M132 98 Q140 102 138 108" stroke="#8a8173" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+  '<g class="tw"><path d="M20 48 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#ffd43b"/><path d="M176 150 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#ff9a52"/><path d="M14 150 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#ffd43b"/></g>'
+);
+function sceneRetro(){
+  var i, h = '<div class="rays" style="--x:50%;--y:-8%"></div><div class="vinyl gold" style="right:-110px;top:22%"></div><div class="vinyl gold" style="left:-120px;top:64%;width:230px;height:230px;animation-direction:reverse"></div><div class="film" style="left:0"></div><div class="film" style="right:0"></div>';
+  for (i = 0; i < 9; i++) { var z = 36 + (i * 25) % 70; h += '<i class="bk" style="left:' + (8 + (i * 43) % 84) + '%;width:' + z + 'px;height:' + z + 'px;--d:' + (11 + (i * 3) % 8) + 's;--l:-' + (i * 1.6).toFixed(1) + 's"></i>'; }
+  return h;
+}
+
 /* ===== Mood themes ===== */
 var THEME = {
   all:   {pat:["🪔","🎶"], bunt:"🪔 🎶 🌼 🎶 🪔", fx:["🎶","✨","🪔","🎵"]},
@@ -938,7 +1015,8 @@ var THEME = {
   pun:   {pat:["🌻","🥁"], bunt:"🌻 🥁 🕺 🥁 🌻", fx:["🥁","🌻","🕺","✨"]},
   mar:   {pat:["🚩","🌺"], bunt:"🚩 🌺 🥁 🌺 🚩", fx:["🚩","🌺","🥁","🎶"]},
   eng:   {pat:["⭐","🎵"], bunt:"⭐ 🎤 🎧 🎤 ⭐", fx:["🎵","⭐","🎤","🎧"]},
-  party: {pat:["✨","🎉"], bunt:"🎉 🪩 ✨ 🪩 🎉", fx:["🎉","✨","🪩","🎊"]}
+  party: {pat:["✨","🎉"], bunt:"🎉 🪩 ✨ 🪩 🎉", fx:["🎉","✨","🪩","🎊"]},
+  retro: {pat:["📻","🎞️"], bunt:"📻 🎞️ 🎶 🎞️ 📻", fx:["🎶","📻","🎞️","✨"]}
 };
 var WHO = {
   en:{
@@ -948,7 +1026,8 @@ var WHO = {
     pun:["Bhangra Veer","Balle balle! Dhol baje te nachna ae!"],
     mar:["Nauvari Tai","Jai Maharashtra! Chala, aaj nachuya!"],
     eng:["DJ Starlight","Hey you! Turn it up and sing along."],
-    party:["Disco Dabbu","Lights, music, dhamaka! Party shuru!"]
+    party:["Disco Dabbu","Lights, music, dhamaka! Party shuru!"],
+    retro:["Vinyl Dada","Arre wah! Purane gaane, asli sona!"]
   },
   hi:{
     all:["मिश्रा जी","अरे वाह! मूड चुनिए, धुन मैं ढूँढ लूँगा।"],
@@ -957,7 +1036,8 @@ var WHO = {
     pun:["भांगड़ा वीर","बल्ले बल्ले! ढोल बजे ते नचणा ए!"],
     mar:["नऊवारी ताई","जय महाराष्ट्र! चला, आज नाचूया!"],
     eng:["डीजे स्टारलाइट","हे! वॉल्यूम बढ़ाओ और साथ में गाओ।"],
-    party:["डिस्को डब्बू","लाइट, म्यूज़िक, धमाका! पार्टी शुरू!"]
+    party:["डिस्को डब्बू","लाइट, म्यूज़िक, धमाका! पार्टी शुरू!"],
+    retro:["विनाइल दादा","अरे वाह! पुराने गाने, असली सोना!"]
   }
 };
 function patUrl(a, b){
@@ -974,6 +1054,7 @@ function themeText(){
 /* ===== animated mood scenes ===== */
 function scene(m){
   var i, h = "";
+  if (m === "retro") { return sceneRetro(); }
   if (m === "party") {
     h = '<div class="beams"></div><div class="beams b2"></div><div class="floor"></div><div class="string"></div><div class="ball"></div>';
     for (i = 0; i < 12; i++) h += '<i class="gl" style="left:' + ((i * 37 + 8) % 96) + '%;top:' + ((i * 53 + 10) % 70) + '%;animation-delay:' + (i * 0.37).toFixed(2) + 's"></i>';
@@ -1032,8 +1113,8 @@ document.getElementById("pmin").onclick = function(e){ e.stopPropagation(); pmin
 applyPmin();
 var lang = "en";
 try { lang = localStorage.getItem("mjdv-lang") || (navigator.language && navigator.language.indexOf("hi") === 0 ? "hi" : "en"); } catch(e){}
-var MOODS = ["bhoj","har","pun","mar","eng","party"];
-var EMOJI = {bhoj:"💃",har:"🥁",pun:"🕺",mar:"🚩",eng:"🎤",party:"🪩"};
+var MOODS = ["bhoj","har","pun","mar","eng","party","retro"];
+var EMOJI = {bhoj:"💃",har:"🥁",pun:"🕺",mar:"🚩",eng:"🎤",party:"🪩",retro:"📻"};
 var active = "all", cur = -1, ready = false, pending = null, player = null, playing = false, shuffleOn = false, errStreak = 0, term = "";
 
 function $(id){ return document.getElementById(id); }
