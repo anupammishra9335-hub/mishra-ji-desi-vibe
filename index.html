@@ -100,6 +100,47 @@ body[data-look="neon"] .queue li:hover,body[data-look="neon"] .queue li.cur{back
 body[data-look="neon"] kbd{background:rgba(255,255,255,.1);border-color:color-mix(in srgb,var(--n1) 50%,transparent);color:#fff}
 body[data-look="neon"] .queue h3{color:var(--n1)}
 
+/* ---------- animated mood scenes ---------- */
+#scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#scene>*{position:absolute}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sweep{from{transform:rotate(-38deg)}to{transform:rotate(38deg)}}
+@keyframes eqs{0%,100%{transform:scaleY(.1)}50%{transform:scaleY(var(--h,.8))}}
+@keyframes gridmove{to{background-position:12px 0,0 0}}
+@keyframes tilehue{to{filter:hue-rotate(360deg)}}
+@keyframes floatUp{0%{transform:translateY(0) scale(.8);opacity:0}15%{opacity:1}100%{transform:translateY(-110vh) scale(1.2);opacity:0}}
+@keyframes glint{0%,100%{transform:scale(0);opacity:0}50%{transform:scale(1);opacity:1}}
+@keyframes swayS{50%{transform:translateX(24px)}}
+#scene .beams{left:50%;top:0;width:220vmax;height:220vmax;margin:-110vmax 0 0 -110vmax;mix-blend-mode:screen;animation:spin 20s linear infinite;
+  background:conic-gradient(transparent 0 6%,rgba(255,60,200,.55) 7% 9%,transparent 10% 27%,rgba(60,220,255,.5) 28% 30%,transparent 31% 52%,rgba(255,230,70,.5) 53% 55%,transparent 56% 77%,rgba(150,90,255,.55) 78% 80%,transparent 81%)}
+#scene .beams.b2{animation-duration:31s;animation-direction:reverse;opacity:.6}
+#scene .ball{left:50%;top:-14px;width:132px;height:132px;margin-left:-66px;border-radius:50%;overflow:hidden;box-shadow:0 0 60px 14px rgba(255,255,255,.45);
+  background:radial-gradient(circle at 34% 28%,#fff,#cfd3e6 28%,#7b7f99 68%,#2a2c40)}
+#scene .ball::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.5) 0 2px,transparent 2px 12px),repeating-linear-gradient(0deg,rgba(0,0,0,.5) 0 2px,transparent 2px 12px);animation:gridmove 2.4s linear infinite}
+#scene .ball::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,255,255,.7),transparent 15%,transparent 55%,rgba(255,255,255,.6) 62%,transparent 70%);mix-blend-mode:overlay;animation:spin 3s linear infinite}
+#scene .string{left:50%;top:0;width:3px;height:30px;margin-left:-1px;background:#d0d0e0}
+#scene .floor{left:-40%;right:-40%;bottom:-6vh;height:62vh;transform:perspective(420px) rotateX(62deg);transform-origin:50% 100%;opacity:.55;
+  background:repeating-conic-gradient(#ff3cac 0 25%,#6a11cb 0 50%) 0 0/90px 90px;animation:tilehue 6s linear infinite;
+  -webkit-mask-image:linear-gradient(transparent,#000 55%);mask-image:linear-gradient(transparent,#000 55%)}
+#scene .gl{width:26px;height:26px;margin:-13px;background:radial-gradient(circle,#fff 0 12%,transparent 14%),conic-gradient(from 45deg,transparent 0 10%,#fff 10% 15%,transparent 15% 35%,#fff 35% 40%,transparent 40% 60%,#fff 60% 65%,transparent 65% 85%,#fff 85% 90%,transparent 90%);filter:drop-shadow(0 0 6px #fff);animation:glint 2.2s ease-in-out infinite}
+#scene .eqw{left:0;right:0;bottom:0;height:42vh;display:flex;align-items:flex-end;gap:5px;padding:0 5px}
+#scene .eqw i{flex:1;height:100%;border-radius:5px 5px 0 0;transform-origin:50% 100%;opacity:.55;background:linear-gradient(0deg,#22e4ff,#8b5cf6 55%,#ff4fa3);animation:eqs var(--d,.8s) ease-in-out infinite;animation-delay:var(--l,0s)}
+#scene .laser{left:var(--x);top:-2vh;width:4px;height:150vh;transform-origin:50% 0;background:linear-gradient(var(--c),transparent 85%);box-shadow:0 0 16px var(--c),0 0 40px var(--c);opacity:.7;animation:sweep var(--d,5s) ease-in-out infinite alternate;animation-delay:var(--l,0s)}
+#scene .vinyl{width:280px;height:280px;border-radius:50%;opacity:.55;animation:spin 3.6s linear infinite;box-shadow:0 0 40px rgba(0,0,0,.4);
+  background:radial-gradient(circle,#111 0 4%,#ff4fa3 5% 17%,#111 18% 100%),repeating-radial-gradient(circle,rgba(255,255,255,.1) 0 2px,transparent 2px 7px),#111}
+#scene .vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(transparent 0 20%,rgba(255,255,255,.22) 25%,transparent 30% 70%,rgba(255,255,255,.22) 75%,transparent 80%)}
+#scene .bk{border-radius:50%;bottom:-120px;background:radial-gradient(circle,rgba(255,226,120,.75),rgba(255,160,40,.25) 55%,transparent 72%);animation:floatUp var(--d,12s) linear infinite;animation-delay:var(--l,0s)}
+#scene .rays{width:170vmax;height:170vmax;margin:-85vmax;left:var(--x,80%);top:var(--y,0%);animation:spin 70s linear infinite;
+  background:repeating-conic-gradient(rgba(255,255,255,.2) 0 5deg,transparent 5deg 18deg);-webkit-mask-image:radial-gradient(circle,#000,transparent 62%);mask-image:radial-gradient(circle,#000,transparent 62%)}
+#scene .sun{left:var(--x,80%);top:var(--y,0%);width:150px;height:150px;margin:-75px;border-radius:50%;background:radial-gradient(circle,#fff6c2 0 30%,#ffd43b 60%,rgba(255,170,0,.0) 72%);box-shadow:0 0 90px 30px rgba(255,210,60,.55)}
+#scene .hill{left:-10%;right:-10%;border-radius:50% 50% 0 0/100% 100% 0 0}
+#scene .mandala{left:50%;top:48%;width:150vmin;height:150vmin;margin:-75vmin;border-radius:50%;animation:spin 100s linear infinite;
+  background:repeating-conic-gradient(rgba(255,255,255,.17) 0 5deg,transparent 5deg 15deg),repeating-radial-gradient(circle,transparent 0 9vmin,rgba(255,255,255,.14) 9vmin 9.6vmin);-webkit-mask-image:radial-gradient(circle,#000 25%,transparent 70%);mask-image:radial-gradient(circle,#000 25%,transparent 70%)}
+#scene .flowr{bottom:2vh;font-size:2rem;animation:swayS 4s ease-in-out infinite;animation-delay:var(--l,0s)}
+@media (max-width:560px){#scene .ball{width:92px;height:92px;margin-left:-46px}#scene .vinyl{width:190px;height:190px}#scene .eqw{gap:3px}}
+@media (prefers-reduced-motion:reduce){#scene *,#scene *::before,#scene *::after{animation:none!important}}
+body[data-look="vibrant"] .row,body[data-look="vibrant"] .mood,body[data-look="vibrant"] .about,body[data-look="vibrant"] .bar,body[data-look="vibrant"] .queue{color:var(--ink)}
 /* headings use a mood font */
 .hero h1,h2,.who{font-family:var(--hf,'Rozha One',serif)}
 body,header.hero,.row,.chip,.mood,.stage,.about,.bar,.search{transition:background-color .45s,border-color .45s,color .3s,box-shadow .3s}
@@ -244,6 +285,7 @@ kbd{background:var(--chip);border:1px solid var(--line);border-radius:5px;paddin
 </style>
 </head>
 <body data-look="vibrant" data-mood="all">
+<div id="scene" aria-hidden="true" data-s=""></div>
 <noscript><p style="padding:20px;text-align:center">Mishra ji Desi vibe: Bhojpuri, Haryanvi, Punjabi, Marathi and English pop hits plus Bollywood party songs. Turn on JavaScript to play the playlist.</p></noscript>
 
 <header class="hero">
@@ -752,9 +794,38 @@ function themeText(){
   if (b) b.textContent = w[1];
   document.querySelectorAll(".mood").forEach(function(x){ x.classList.toggle("sel", x.getAttribute("data-m") === active); });
 }
+/* ===== animated mood scenes ===== */
+function scene(m){
+  var i, h = "";
+  if (m === "party") {
+    h = '<div class="beams"></div><div class="beams b2"></div><div class="floor"></div><div class="string"></div><div class="ball"></div>';
+    for (i = 0; i < 12; i++) h += '<i class="gl" style="left:' + ((i * 37 + 8) % 96) + '%;top:' + ((i * 53 + 10) % 70) + '%;animation-delay:' + (i * 0.37).toFixed(2) + 's"></i>';
+  } else if (m === "eng") {
+    h = '<div class="laser" style="--x:18%;--c:#22e4ff;--d:4.6s"></div><div class="laser" style="--x:50%;--c:#ff4fa3;--d:5.8s;--l:-2s"></div><div class="laser" style="--x:82%;--c:#c4ff3d;--d:4.1s;--l:-1s"></div><div class="vinyl" style="left:-90px;top:34%"></div><div class="vinyl" style="right:-90px;top:58%;animation-direction:reverse"></div><div class="eqw">';
+    for (i = 0; i < 36; i++) h += '<i style="--h:' + (0.35 + ((i * 29) % 65) / 100).toFixed(2) + ';--d:' + (0.55 + ((i * 7) % 9) / 10).toFixed(2) + 's;--l:-' + ((i * 13) % 10) / 10 + 's"></i>';
+    h += '</div>';
+  } else if (m === "bhoj") {
+    for (i = 0; i < 14; i++) { var s = 40 + (i * 23) % 90; h += '<i class="bk" style="left:' + ((i * 41) % 100) + '%;width:' + s + 'px;height:' + s + 'px;--d:' + (9 + (i * 5) % 9) + 's;--l:-' + (i * 1.3).toFixed(1) + 's"></i>'; }
+    h += '<div class="rays" style="--x:50%;--y:112%"></div>';
+  } else if (m === "har") {
+    h = '<div class="rays" style="--x:82%;--y:6%"></div><div class="sun" style="--x:82%;--y:6%"></div><div class="hill" style="height:30vh;bottom:-10vh;background:rgba(20,110,50,.55)"></div><div class="hill" style="height:22vh;bottom:-9vh;background:rgba(10,80,35,.65);left:-30%;right:20%"></div>';
+    for (i = 0; i < 8; i++) h += '<span class="flowr" style="left:' + (6 + i * 13) + '%;--l:-' + i * 0.5 + 's">🌾</span>';
+  } else if (m === "pun") {
+    h = '<div class="rays" style="--x:20%;--y:4%"></div><div class="sun" style="--x:20%;--y:4%"></div><div class="hill" style="height:30vh;bottom:-10vh;background:rgba(255,200,40,.6)"></div><div class="hill" style="height:20vh;bottom:-8vh;background:rgba(235,160,10,.7);left:-5%;right:-40%"></div>';
+    for (i = 0; i < 8; i++) h += '<span class="flowr" style="left:' + (4 + i * 13) + '%;--l:-' + i * 0.5 + 's">🌻</span>';
+  } else if (m === "mar") {
+    h = '<div class="mandala"></div><div class="rays" style="--x:50%;--y:-4%"></div>';
+    for (i = 0; i < 9; i++) { var z = 30 + (i * 19) % 60; h += '<i class="bk" style="left:' + ((i * 47) % 100) + '%;width:' + z + 'px;height:' + z + 'px;--d:' + (11 + (i * 3) % 8) + 's;--l:-' + (i * 1.7).toFixed(1) + 's"></i>'; }
+  } else {
+    for (i = 0; i < 10; i++) { var q = 40 + (i * 29) % 80; h += '<i class="bk" style="left:' + ((i * 43) % 100) + '%;width:' + q + 'px;height:' + q + 'px;--d:' + (10 + (i * 4) % 9) + 's;--l:-' + (i * 1.5).toFixed(1) + 's"></i>'; }
+    h += '<div class="rays" style="--x:85%;--y:-5%"></div>';
+  }
+  return h;
+}
 function themeArt(){
   var th = THEME[active] || THEME.all;
   document.body.setAttribute("data-mood", active);
+  var sc = document.getElementById("scene"); if (sc && sc.getAttribute("data-s") !== active) { sc.setAttribute("data-s", active); sc.innerHTML = scene(active); }
   var bn = document.querySelector(".bunting"); if (bn) bn.textContent = th.bunt;
   var m = document.getElementById("mascot");
   if (m) { m.innerHTML = CH[active] || CH.all; m.classList.remove("pop"); void m.offsetWidth; m.classList.add("pop"); }
