@@ -24,7 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎶</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&family=Yatra+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&family=Yatra+One&family=Bungee&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg0:#fff7ea; --card0:#ffffff; --ink:#2b1608; --muted:#7a5a40; --accent:#d9480f; --accent2:#f59f00; --line0:#f0dcc0; --chip0:#fde9c8; --bar0:#fffdf8;
@@ -33,19 +33,81 @@
   :root{ --bg0:#150803; --card0:#231008; --ink:#fdeed6; --muted:#c9a27a; --accent:#ff8a3d; --accent2:#ffc53d; --line0:#3a1d0e; --chip0:#3a1d0e; --bar0:#1c0c05; }
 }
 body{--bg:var(--bg0);--card:var(--card0);--chip:var(--chip0);--line:var(--line0);--bar:var(--bar0)}
-body[data-mood]{--accent:var(--m1);--accent2:var(--m2);
-  --bg:var(--bgL);--card:color-mix(in srgb,var(--m1) 4%,var(--card0));
-  --chip:color-mix(in srgb,var(--m1) 18%,var(--chip0));--line:color-mix(in srgb,var(--m1) 32%,var(--line0));--bar:color-mix(in srgb,var(--m1) 9%,var(--bar0))}
-body[data-mood="bhoj"]{--m1:#e03a1e;--m2:#ffb703;--bgL:#ffefe4;--bgD:#260d06}
-body[data-mood="har"]{--m1:#2f9e44;--m2:#f2c200;--bgL:#f0f9e2;--bgD:#0d200e}
-body[data-mood="pun"]{--m1:#1c7ed6;--m2:#ff922b;--bgL:#e6f2ff;--bgD:#08162e}
-body[data-mood="mar"]{--m1:#7048e8;--m2:#f08c00;--bgL:#f0eaff;--bgD:#140e2e}
-body[data-mood="eng"]{--m1:#e64980;--m2:#15aabf;--bgL:#ffe9f3;--bgD:#2b0c20}
-body[data-mood="party"]{--m1:#be4bdb;--m2:#fcc419;--bgL:#f6e8ff;--bgD:#1c0a2e}
-@media (prefers-color-scheme:dark){body[data-mood]{--bg:var(--bgD)}}
-body,header.hero,.row,.chip,.mood,.stage,.about,.bar,.search{transition:background-color .5s,border-color .5s,color .3s}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.08;background-image:var(--pat);background-size:130px 130px}
+/* mood palettes: m = vibrant look, n = neon look */
+body[data-mood="all"]{--m1:#d9480f;--m2:#ffd43b;--gV:linear-gradient(160deg,#ff8a1f 0%,#e8590c 50%,#b3123a 100%);--n1:#ff9f1c;--n2:#ff4d6d;--hf:'Rozha One',serif}
+body[data-mood="bhoj"]{--m1:#d92b1a;--m2:#ffd43b;--gV:linear-gradient(160deg,#ff3d2e 0%,#e8590c 52%,#f08c00 100%);--n1:#ff5a36;--n2:#ffc83d;--hf:'Yatra One','Rozha One',serif}
+body[data-mood="har"]{--m1:#1e8e3e;--m2:#ffe066;--gV:linear-gradient(160deg,#087f5b 0%,#2f9e44 52%,#5c940d 100%);--n1:#3dff8f;--n2:#f9d423;--hf:'Baloo 2','Rozha One',sans-serif}
+body[data-mood="pun"]{--m1:#1864ab;--m2:#ffa94d;--gV:linear-gradient(160deg,#0b3d91 0%,#1c7ed6 55%,#e8590c 130%);--n1:#3ea0ff;--n2:#ff9f43;--hf:'Bungee','Rozha One',sans-serif}
+body[data-mood="mar"]{--m1:#5f3dc4;--m2:#ffc078;--gV:linear-gradient(160deg,#3b1c8c 0%,#7048e8 55%,#e8590c 130%);--n1:#a78bfa;--n2:#ffb347;--hf:'Yatra One','Rozha One',serif}
+body[data-mood="eng"]{--m1:#c2255c;--m2:#66d9e8;--gV:linear-gradient(160deg,#5f2eea 0%,#e64980 60%,#ff8787 120%);--n1:#ff4fa3;--n2:#22e4ff;--hf:'Bungee','Rozha One',sans-serif}
+body[data-mood="party"]{--m1:#9c36b5;--m2:#ffe066;--gV:linear-gradient(160deg,#240046 0%,#7b2cbf 50%,#e0359b 100%);--n1:#e056ff;--n2:#ffe14d;--hf:'Bungee','Rozha One',sans-serif}
+
+/* ---------- look 1: vibrant ---------- */
+body[data-look="vibrant"]{--accent:var(--m1);--accent2:var(--m2);--bg:#fff;--card:rgba(255,255,255,.96);--ink:#2b1608;--muted:#6b5645;--chip:color-mix(in srgb,var(--m1) 12%,#fff);--line:color-mix(in srgb,var(--m1) 20%,#fff);--bar:#fff;--pi:#fff;--pm:rgba(255,255,255,.9);
+  background:var(--gV) fixed;color:var(--pi)}
+body[data-look="vibrant"] header.hero{background:radial-gradient(circle at 18% 0%,rgba(255,255,255,.28),transparent 48%),radial-gradient(circle at 90% 10%,color-mix(in srgb,var(--m2) 40%,transparent),transparent 42%);border-bottom:2px dashed rgba(255,255,255,.4)}
+body[data-look="vibrant"] .hero h1{color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.18)}
+body[data-look="vibrant"] .hero h1 span{color:var(--m2)}
+body[data-look="vibrant"] .hero .hi,body[data-look="vibrant"] .hero p.sub,body[data-look="vibrant"] .count,body[data-look="vibrant"] .lead,body[data-look="vibrant"] .hint,body[data-look="vibrant"] .empty,body[data-look="vibrant"] footer{color:var(--pm)}
+body[data-look="vibrant"] h2{color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.18)}
+body[data-look="vibrant"] footer{border-top-color:rgba(255,255,255,.4)}
+body[data-look="vibrant"] .btn{background:#fff;color:var(--m1);box-shadow:0 8px 20px rgba(0,0,0,.22)}
+body[data-look="vibrant"] .btn.ghost{background:transparent;color:#fff;border:2px solid #fff;box-shadow:none}
+body[data-look="vibrant"] .chip{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.45)}
+body[data-look="vibrant"] .chip.on{background:#fff;color:var(--m1);border-color:#fff}
+body[data-look="vibrant"] .search{background:#fff;color:#2b1608;border-color:transparent}
+body[data-look="vibrant"] .lang{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.45)}
+body[data-look="vibrant"] .lang button{color:#fff}
+body[data-look="vibrant"] .lang button.on{background:#fff;color:var(--m1)}
+body[data-look="vibrant"] .mood,body[data-look="vibrant"] .row,body[data-look="vibrant"] .about{border-color:transparent;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+body[data-look="vibrant"] .mood{background:linear-gradient(160deg,#fff,color-mix(in srgb,var(--m2) 22%,#fff))}
+body[data-look="vibrant"] .mood.sel{box-shadow:0 0 0 4px #fff,0 10px 26px rgba(0,0,0,.3)}
+body[data-look="vibrant"] .about h2{color:var(--m1);text-shadow:none}
+body[data-look="vibrant"] .about .lead{color:var(--muted)}
+body[data-look="vibrant"] .stage{background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.55);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+body[data-look="vibrant"] .who{color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.2)}
+body[data-look="vibrant"] .bubble{color:#2b1608}
+body[data-look="vibrant"] kbd{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4);color:#fff}
+body[data-look="vibrant"] .queue h3{color:var(--m1)}
+
+/* ---------- look 2: neon stage ---------- */
+body[data-look="neon"]{--accent:var(--n1);--accent2:var(--n2);--bg:#0b0714;--card:rgba(255,255,255,.06);--ink:#fff;--muted:rgba(255,255,255,.68);--chip:rgba(255,255,255,.1);--line:color-mix(in srgb,var(--n1) 55%,transparent);--bar:rgba(12,8,22,.94);--pi:#fff;--pm:rgba(255,255,255,.74);
+  background:radial-gradient(900px 520px at 12% -6%,color-mix(in srgb,var(--n1) 42%,transparent),transparent 62%),radial-gradient(820px 520px at 100% 8%,color-mix(in srgb,var(--n2) 30%,transparent),transparent 62%),#0b0714;background-attachment:fixed;color:var(--pi)}
+body[data-look="neon"] header.hero{background:none;border-bottom:2px solid color-mix(in srgb,var(--n1) 45%,transparent)}
+body[data-look="neon"] .hero h1{color:#fff;text-shadow:0 0 12px var(--n1),0 0 34px var(--n1)}
+body[data-look="neon"] .hero h1 span{color:var(--n2);text-shadow:0 0 12px var(--n2),0 0 30px var(--n2)}
+body[data-look="neon"] .hero .hi,body[data-look="neon"] .hero p.sub,body[data-look="neon"] .count,body[data-look="neon"] .lead,body[data-look="neon"] .hint,body[data-look="neon"] .empty,body[data-look="neon"] footer{color:var(--pm)}
+body[data-look="neon"] h2{color:#fff;text-shadow:0 0 12px var(--n1)}
+body[data-look="neon"] footer{border-top-color:color-mix(in srgb,var(--n1) 45%,transparent)}
+body[data-look="neon"] .btn{background:var(--n1);color:#0b0714;font-weight:700;box-shadow:0 0 22px color-mix(in srgb,var(--n1) 70%,transparent)}
+body[data-look="neon"] .btn.ghost{background:transparent;color:var(--n1);border:2px solid var(--n1);box-shadow:0 0 16px color-mix(in srgb,var(--n1) 45%,transparent)}
+body[data-look="neon"] .chip{background:rgba(255,255,255,.07);color:#fff;border-color:color-mix(in srgb,var(--n1) 50%,transparent)}
+body[data-look="neon"] .chip.on{background:var(--n1);color:#0b0714;border-color:var(--n1);box-shadow:0 0 14px var(--n1)}
+body[data-look="neon"] .search{background:rgba(255,255,255,.08);color:#fff;border-color:color-mix(in srgb,var(--n1) 55%,transparent)}
+body[data-look="neon"] .lang{background:rgba(255,255,255,.06);border-color:color-mix(in srgb,var(--n1) 55%,transparent)}
+body[data-look="neon"] .lang button{color:#fff}
+body[data-look="neon"] .lang button.on{background:var(--n1);color:#0b0714}
+body[data-look="neon"] .mood,body[data-look="neon"] .row,body[data-look="neon"] .about,body[data-look="neon"] .stage{background:rgba(255,255,255,.06);border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 0 18px color-mix(in srgb,var(--n1) 30%,transparent),inset 0 0 22px color-mix(in srgb,var(--n1) 9%,transparent)}
+body[data-look="neon"] .mood.sel,body[data-look="neon"] .row.playing{border-color:var(--n1);box-shadow:0 0 0 2px var(--n1),0 0 26px color-mix(in srgb,var(--n1) 65%,transparent)}
+body[data-look="neon"] .row .tag{color:var(--n2)}
+body[data-look="neon"] .row .go,body[data-look="neon"] .ctl button.main{color:#0b0714}
+body[data-look="neon"] .about h2{color:#fff}
+body[data-look="neon"] .who{color:#fff;text-shadow:0 0 12px var(--n1),0 0 28px var(--n1)}
+body[data-look="neon"] .stage::before{content:"";position:absolute;left:-30px;top:-60px;width:290px;height:380px;background:radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--n1) 60%,transparent),transparent 68%);pointer-events:none}
+body[data-look="neon"] .bubble{background:#150d26;color:#fff;border-color:var(--n1);box-shadow:0 0 14px color-mix(in srgb,var(--n1) 55%,transparent)}
+body[data-look="neon"] .bubble::before{background:#150d26;border-color:var(--n1)}
+body[data-look="neon"] .queue li:hover,body[data-look="neon"] .queue li.cur{background:rgba(255,255,255,.1)}
+body[data-look="neon"] kbd{background:rgba(255,255,255,.1);border-color:color-mix(in srgb,var(--n1) 50%,transparent);color:#fff}
+body[data-look="neon"] .queue h3{color:var(--n1)}
+
+/* headings use a mood font */
+.hero h1,h2,.who{font-family:var(--hf,'Rozha One',serif)}
+body,header.hero,.row,.chip,.mood,.stage,.about,.bar,.search{transition:background-color .45s,border-color .45s,color .3s,box-shadow .3s}
 header.hero,main.wrap,footer{position:relative;z-index:1}
+.lang.look{right:auto;left:16px}
+.heroChar{display:none;position:absolute;right:max(20px,calc(50% - 600px));bottom:-8px;width:200px;height:240px;pointer-events:none}
+.heroChar .char{animation:bob 1.2s ease-in-out infinite;transform-origin:50% 96%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28))}
+@media (min-width:1180px){.heroChar{display:block}}
 /* characters */
 .char{display:block;width:100%;height:100%;overflow:visible}
 .char .aR{transform-origin:134px 134px;animation:waveR 1.1s ease-in-out infinite}
@@ -66,15 +128,15 @@ header.hero,main.wrap,footer{position:relative;z-index:1}
 @keyframes popin{0%{transform:scale(.4) rotate(-12deg);opacity:0}70%{transform:scale(1.08) rotate(3deg);opacity:1}100%{transform:none}}
 @keyframes rise{0%{transform:translateY(0) scale(.7);opacity:0}15%{opacity:.9}100%{transform:translateY(-190px) scale(1.2) rotate(18deg);opacity:0}}
 /* stage banner */
-.stage{position:relative;overflow:hidden;display:flex;align-items:center;gap:22px;margin-bottom:24px;padding:14px 24px;border:2px solid var(--line);border-radius:26px;
-  background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 24%,var(--card)),color-mix(in srgb,var(--accent2) 22%,var(--card)))}
+.stage{position:relative;overflow:hidden;display:flex;align-items:center;gap:22px;margin-bottom:24px;padding:14px 24px;border:2px solid var(--line);border-radius:26px}
 .mascot{flex:none;width:150px;height:176px;position:relative;z-index:1}
 .mascot.pop{animation:popin .6s cubic-bezier(.2,1.5,.4,1)}
-.mascot .char{transform-origin:50% 96%;animation:bob 1.1s ease-in-out infinite}
+.mascot .char{transform-origin:50% 96%;animation:bob 1.1s ease-in-out infinite;filter:drop-shadow(0 8px 10px rgba(0,0,0,.28))}
 .said{position:relative;z-index:1;min-width:0}
-.who{font-family:'Rozha One',serif;font-size:1.7rem;line-height:1.1;color:var(--accent)}
+.who{font-size:1.7rem;line-height:1.15}
 .bubble{position:relative;display:inline-block;margin-top:10px;background:var(--card);border:2px solid var(--accent);border-radius:18px;padding:10px 16px;font-weight:600;font-size:1.02rem}
 .bubble::before{content:"";position:absolute;left:-10px;top:16px;width:16px;height:16px;background:var(--card);border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg)}
+body[data-look="vibrant"] .bubble,body[data-look="vibrant"] .bubble::before{background:#fff}
 .fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .fx span{position:absolute;bottom:-10px;font-size:1.5rem;opacity:0;animation:rise 4.2s linear infinite}
 /* mood cards show the characters */
@@ -85,8 +147,8 @@ header.hero,main.wrap,footer{position:relative;z-index:1}
 .mood:hover .char .aR,.mood:hover .char .aL{animation-duration:.6s}
 .mood .char .aR,.mood .char .aL,.mood .char .eq rect,.mood .char .flag,.mood .char .tw path{animation-play-state:paused}
 .mood:hover .char .aR,.mood:hover .char .aL,.mood:hover .char .eq rect,.mood:hover .char .flag,.mood:hover .char .tw path{animation-play-state:running}
-@media (max-width:560px){.stage{gap:12px;padding:12px 14px}.mascot{width:104px;height:124px}.who{font-size:1.3rem}.bubble{font-size:.92rem;padding:8px 12px}}
-@media (prefers-reduced-motion:reduce){.char *,.mascot,.mascot .char,.fx span{animation:none!important}.fx{display:none}}
+@media (max-width:560px){.stage{gap:12px;padding:12px 14px}.mascot{width:104px;height:124px}.who{font-size:1.25rem}.bubble{font-size:.92rem;padding:8px 12px}.lang button{padding:6px 10px}}
+@media (prefers-reduced-motion:reduce){.char *,.mascot,.mascot .char,.heroChar .char,.fx span{animation:none!important}.fx{display:none}}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Hind',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;padding-bottom:96px}
@@ -181,10 +243,12 @@ kbd{background:var(--chip);border:1px solid var(--line);border-radius:5px;paddin
 .toast.show{transform:translateX(-50%) translateY(0)}
 </style>
 </head>
-<body>
+<body data-look="vibrant" data-mood="all">
 <noscript><p style="padding:20px;text-align:center">Mishra ji Desi vibe: Bhojpuri, Haryanvi, Punjabi, Marathi and English pop hits plus Bollywood party songs. Turn on JavaScript to play the playlist.</p></noscript>
 
 <header class="hero">
+  <div class="lang look" role="group" aria-label="Look"><button id="lkV" class="on">✨ Vibrant</button><button id="lkN">🌙 Neon</button></div>
+  <div class="heroChar" id="heroChar" aria-hidden="true"></div>
   <div class="lang" role="group" aria-label="Language">
     <button id="lEn" class="on">EN</button><button id="lHi">हिं</button>
   </div>
@@ -690,16 +754,26 @@ function themeText(){
 }
 function themeArt(){
   var th = THEME[active] || THEME.all;
-  if (active === "all") document.body.removeAttribute("data-mood"); else document.body.setAttribute("data-mood", active);
-  document.body.style.setProperty("--pat", patUrl(th.pat[0], th.pat[1]));
+  document.body.setAttribute("data-mood", active);
   var bn = document.querySelector(".bunting"); if (bn) bn.textContent = th.bunt;
   var m = document.getElementById("mascot");
   if (m) { m.innerHTML = CH[active] || CH.all; m.classList.remove("pop"); void m.offsetWidth; m.classList.add("pop"); }
+  var hc = document.getElementById("heroChar"); if (hc) hc.innerHTML = CH[active] || CH.all;
   var fx = document.getElementById("fx");
   if (fx) fx.innerHTML = th.fx.map(function(e, i){ return '<span style="left:' + (6 + i * 24) + '%;animation-delay:' + (i * 0.9) + 's">' + e + '</span>'; }).join("");
   themeText();
 }
 
+var look = "vibrant";
+try { var lk0 = localStorage.getItem("mjdv-look"); if (lk0 === "neon" || lk0 === "vibrant") look = lk0; } catch(e){}
+function applyLook(){
+  document.body.setAttribute("data-look", look);
+  document.getElementById("lkV").classList.toggle("on", look === "vibrant");
+  document.getElementById("lkN").classList.toggle("on", look === "neon");
+}
+function setLook(v){ look = v; try { localStorage.setItem("mjdv-look", v); } catch(e){} applyLook(); }
+document.getElementById("lkV").onclick = function(){ setLook("vibrant"); };
+document.getElementById("lkN").onclick = function(){ setLook("neon"); };
 var lang = "en";
 try { lang = localStorage.getItem("mjdv-lang") || (navigator.language && navigator.language.indexOf("hi") === 0 ? "hi" : "en"); } catch(e){}
 var MOODS = ["bhoj","har","pun","mar","eng","party"];
@@ -882,7 +956,7 @@ document.addEventListener("keydown", function(e){
   else if (e.key === "ArrowLeft") seek(-10);
 });
 
-applyLang(); themeArt();
+applyLang(); applyLook(); themeArt();
 try {
   var sp = new URLSearchParams(location.search).get("s");
   if (sp) { for (var z = 0; z < songs.length; z++) { if (songs[z].id === sp) { cur = z; pending = null; updateUI(); break; } } }
